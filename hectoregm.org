@@ -24,7 +24,7 @@
    Set the correct PATH
    #+begin_src emacs-lisp
      (setenv "PATH" (concat "/usr/local/bin:/usr/bin:/bin" (getenv "PATH")))
-	 (require 'cl)
+     (require 'cl)
    #+end_src
 ** Package Management
    :PROPERTIES:
@@ -45,8 +45,8 @@
     This is the list of packages used in this configuration.
     #+begin_src emacs-lisp
       (defvar hectoregm/packages '(python-mode
-	  							 magit)
-	    "Default packages")
+                                   magit)
+        "Default packages")
     #+end_src
 *** Install default packages
     :PROPERTIES:
@@ -74,19 +74,20 @@
     :CUSTOM_ID: default-font
     :END:
 
-	Set default font as DejaVu Sans Mono
+    Set default font as DejaVu Sans Mono and default theme one of my own
+    brewing.
     #+begin_src emacs-lisp
-	  (set-default-font "DejaVu Sans Mono 18")
-	  (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-	  (setq custom-safe-themes t)
-	  (load-theme 'hectoregm)
+      (set-default-font "DejaVu Sans Mono 18")
+      (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+      (setq custom-safe-themes t)
+      (load-theme 'hectoregm)
     #+end_src
 ** Key bindings
     :PROPERTIES:
     :CUSTOM_ID: key-bindings
     :END:
 
-	Sane keybindings for Mac
+    Sane keybindings for Mac
     #+begin_src emacs-lisp
       (setq mac-option-modifier 'super)
       (setq mac-command-modifier 'meta)
@@ -96,16 +97,16 @@
     :CUSTOM_ID: python
     :END:
 
-	Python config
+    Python config
     #+begin_src emacs-lisp
-	  (require 'python-mode)
+      (require 'python-mode)
     #+end_src	
 ** Example
     :PROPERTIES:
     :CUSTOM_ID:
     :END:
 
-	Insert doc
+    Insert doc
     #+begin_src emacs-lisp
-
+      (message "End of config")
     #+end_src

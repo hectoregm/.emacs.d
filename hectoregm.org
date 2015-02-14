@@ -20,3 +20,14 @@
      (setq user-full-name "Hector E. Gomez Morales")
      (setq user-mail-address "hectoregm@gmail.com")
    #+end_src
+
+** Key bindings
+    :PROPERTIES:
+    :CUSTOM_ID: key-bindings
+    :END:
+
+    Miscellaneous key binding stuff that doesn't fit anywhere else.
+    #+begin_src emacs-lisp
+      (setq mac-option-modifier 'super)
+      (setq mac-command-modifier 'meta)
+    #+end_src

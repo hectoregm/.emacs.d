@@ -1,1 +1,2 @@
-(org-babel-load-file (expand-file-name "hectoregm.org" user-emacs-directory))
+(org-babel-load-file "/Users/hectoregm/.emacs.d/hectoregm.org")
+

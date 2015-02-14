@@ -5,29 +5,107 @@
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="http://thomasf.github.io/solarized-css/solarized-light.min.css" />
 
 * Configuration
-  Emacs is a special beast. Taming it takes a lot of care. In an
-  attempt to document/explain/share with the rest of the world, this
-  is my attempt at configuration as a literate program. It also shows
-  off the awesome power of org-mode, which makes all of this possible.
+  My config for Emacs.
 ** User details
    :PROPERTIES:
    :CUSTOM_ID: user-info
    :END:
 
-   Emacs will normally pick this up automatically, but this way I can
-   be sure the right information is always present.
+   Basic info about me
    #+begin_src emacs-lisp
      (setq user-full-name "Hector E. Gomez Morales")
      (setq user-mail-address "hectoregm@gmail.com")
    #+end_src
+** Environment
+   :PROPERTIES:
+   :CUSTOM_ID: environment
+   :END:
 
+   Set the correct PATH
+   #+begin_src emacs-lisp
+     (setenv "PATH" (concat "/usr/local/bin:/usr/bin:/bin" (getenv "PATH")))
+	 (require 'cl)
+   #+end_src
+** Package Management
+   :PROPERTIES:
+   :CUSTOM_ID: package-management
+   :END:
+
+   Using only [[http://melpa.milkbox.net/#][MELPA]] repositories.
+   #+begin_src emacs-lisp
+     (package-initialize)
+     (add-to-list 'package-archives
+                  '("melpa" . "http://melpa.milkbox.net/packages/") t)
+   #+end_src
+*** Define default packages
+    :PROPERTIES:
+    :CUSTOM_ID: default-packages
+    :END:
+
+    This is the list of packages used in this configuration.
+    #+begin_src emacs-lisp
+      (defvar hectoregm/packages '(python-mode
+	  							 magit)
+	    "Default packages")
+    #+end_src
+*** Install default packages
+    :PROPERTIES:
+    :CUSTOM_ID: package-install
+    :END:
+
+    When Emacs boots, check to make sure all of the packages defined
+    in =hectoregm/packages= are installed. If not, have ELPA take care of
+    it.
+    #+begin_src emacs-lisp
+      (defun hectoregm/packages-installed-p ()
+        (loop for pkg in hectoregm/packages
+              when (not (package-installed-p pkg)) do (return nil)
+              finally (return t)))
+
+      (unless (hectoregm/packages-installed-p)
+        (message "%s" "Refreshing package database...")
+        (package-refresh-contents)
+        (dolist (pkg hectoregm/packages)
+          (when (not (package-installed-p pkg))
+            (package-install pkg))))
+    #+end_src
+** Default Font and Theme
+    :PROPERTIES:
+    :CUSTOM_ID: default-font
+    :END:
+
+	Set default font as DejaVu Sans Mono
+    #+begin_src emacs-lisp
+	  (set-default-font "DejaVu Sans Mono 18")
+	  (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+	  (setq custom-safe-themes t)
+	  (load-theme 'hectoregm)
+    #+end_src
 ** Key bindings
     :PROPERTIES:
     :CUSTOM_ID: key-bindings
     :END:
 
-    Miscellaneous key binding stuff that doesn't fit anywhere else.
+	Sane keybindings for Mac
     #+begin_src emacs-lisp
       (setq mac-option-modifier 'super)
       (setq mac-command-modifier 'meta)
+    #+end_src
+** Python
+    :PROPERTIES:
+    :CUSTOM_ID: python
+    :END:
+
+	Python config
+    #+begin_src emacs-lisp
+	  (require 'python-mode)
+    #+end_src	
+** Example
+    :PROPERTIES:
+    :CUSTOM_ID:
+    :END:
+
+	Insert doc
+    #+begin_src emacs-lisp
+
     #+end_src

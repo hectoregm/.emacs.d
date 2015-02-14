@@ -1,0 +1,22 @@
+#+TITLE: Hector Gomez's Emacs 24 Configuration
+#+AUTHOR: Hector Gomez
+#+EMAIL: hectoregm@gmail.com
+#+OPTIONS: toc:3 num:nil
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="http://thomasf.github.io/solarized-css/solarized-light.min.css" />
+
+* Configuration
+  Emacs is a special beast. Taming it takes a lot of care. In an
+  attempt to document/explain/share with the rest of the world, this
+  is my attempt at configuration as a literate program. It also shows
+  off the awesome power of org-mode, which makes all of this possible.
+** User details
+   :PROPERTIES:
+   :CUSTOM_ID: user-info
+   :END:
+
+   Emacs will normally pick this up automatically, but this way I can
+   be sure the right information is always present.
+   #+begin_src emacs-lisp
+     (setq user-full-name "Hector E. Gomez Morales")
+     (setq user-mail-address "hectoregm@gmail.com")
+   #+end_src

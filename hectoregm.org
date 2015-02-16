@@ -45,7 +45,8 @@
     This is the list of packages used in this configuration.
     #+begin_src emacs-lisp
       (defvar hectoregm/packages '(python-mode
-                                   magit)
+                                   magit
+                                   projectile)
         "Default packages")
     #+end_src
 *** Install default packages
@@ -92,7 +93,7 @@
       (setq mac-option-modifier 'super)
       (setq mac-command-modifier 'meta)
     #+end_src
-** Python
+** Projectile
     :PROPERTIES:
     :CUSTOM_ID: python
     :END:
@@ -100,6 +101,15 @@
     Python config
     #+begin_src emacs-lisp
       (require 'python-mode)
+    #+end_src
+** Python
+    :PROPERTIES:
+    :CUSTOM_ID: python
+    :END:
+
+    Enable Projectile global mode
+    #+begin_src emacs-lisp
+      (projectile-global-mode)
     #+end_src	
 ** Example
     :PROPERTIES:

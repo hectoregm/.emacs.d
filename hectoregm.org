@@ -110,7 +110,16 @@
     Enable Projectile global mode
     #+begin_src emacs-lisp
       (projectile-global-mode)
-    #+end_src	
+    #+end_src
+** CSS
+    :PROPERTIES:
+    :CUSTOM_ID: css
+    :END:
+
+    Set tab width in CSS to two spaces.
+    #+begin_src emacs-lisp
+      (setq css-indent-offset 2)
+    #+end_src
 ** Example
     :PROPERTIES:
     :CUSTOM_ID:

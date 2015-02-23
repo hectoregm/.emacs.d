@@ -120,6 +120,35 @@
     #+begin_src emacs-lisp
       (setq css-indent-offset 2)
     #+end_src
+** Whitespace
+    :PROPERTIES:
+    :CUSTOM_ID: whitespace
+    :END:
+
+    Always use spaces instead of tabs, and define helper functions
+    untabify-buffer - Removes all the tabs from the buffer.
+    indent-buffer - Indents the whole buffer
+    cleanup-buffer - Performs
+    #+begin_src emacs-lisp
+      (setq-default indent-tabs-mode nil)
+
+      (defun untabify-buffer ()
+        (interactive)
+        (untabify (point-min) (point-max)))
+
+      (defun indent-buffer ()
+        (interactive)
+        (indent-region (point-min) (point-max)))
+
+      (defun cleanup-buffer ()
+        "Perform a bunch of operations on the whitespace content of a buffer."
+        (interactive)
+        (indent-buffer)
+        (untabify-buffer)
+        (delete-trailing-whitespace))
+
+      (global-set-key (kbd "C-c n") 'cleanup-buffer)
+    #+end_src
 ** Example
     :PROPERTIES:
     :CUSTOM_ID:

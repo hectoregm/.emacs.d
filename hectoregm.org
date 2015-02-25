@@ -8,7 +8,7 @@
   My config for Emacs.
 ** User details
    :PROPERTIES:
-   :CUSTOM_ID: user-info
+   :CUSTOM_ID: general-info
    :END:
 
    Basic info about me
@@ -71,65 +71,65 @@
             (package-install pkg))))
     #+end_src
 ** Default Font and Theme
-    :PROPERTIES:
-    :CUSTOM_ID: default-font
-    :END:
+   :PROPERTIES:
+   :CUSTOM_ID: default-font
+   :END:
 
-    Set default font as DejaVu Sans Mono and default theme one of my own
-    brewing.
-    #+begin_src emacs-lisp
+   Set default font as DejaVu Sans Mono and default theme one of my own
+   brewing.
+   #+begin_src emacs-lisp
       (set-default-font "DejaVu Sans Mono 18")
       (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
       (setq custom-safe-themes t)
       (load-theme 'hectoregm)
-    #+end_src
+   #+end_src
 ** Key bindings
-    :PROPERTIES:
-    :CUSTOM_ID: key-bindings
-    :END:
+   :PROPERTIES:
+   :CUSTOM_ID: key-bindings
+   :END:
 
-    Sane keybindings for Mac
-    #+begin_src emacs-lisp
+   Sane keybindings for Mac
+   #+begin_src emacs-lisp
       (setq mac-option-modifier 'super)
       (setq mac-command-modifier 'meta)
-    #+end_src
+   #+end_src
 ** Projectile
-    :PROPERTIES:
-    :CUSTOM_ID: python
-    :END:
+   :PROPERTIES:
+   :CUSTOM_ID: python
+   :END:
 
-    Python config
-    #+begin_src emacs-lisp
+   Python config
+   #+begin_src emacs-lisp
       (require 'python-mode)
-    #+end_src
+   #+end_src
 ** Python
-    :PROPERTIES:
-    :CUSTOM_ID: python
-    :END:
+   :PROPERTIES:
+   :CUSTOM_ID: python
+   :END:
 
-    Enable Projectile global mode
-    #+begin_src emacs-lisp
+   Enable Projectile global mode
+   #+begin_src emacs-lisp
       (projectile-global-mode)
-    #+end_src
+   #+end_src
 ** CSS
-    :PROPERTIES:
-    :CUSTOM_ID: css
-    :END:
+   :PROPERTIES:
+   :CUSTOM_ID: css
+   :END:
 
-    Set tab width in CSS to two spaces.
-    #+begin_src emacs-lisp
+   Set tab width in CSS to two spaces.
+   #+begin_src emacs-lisp
       (setq css-indent-offset 2)
-    #+end_src
+   #+end_src
 ** Whitespace
-    :PROPERTIES:
-    :CUSTOM_ID: whitespace
-    :END:
+   :PROPERTIES:
+   :CUSTOM_ID: whitespace
+   :END:
 
-    Always use spaces instead of tabs, and define helper functions
-    untabify-buffer - Removes all the tabs from the buffer.
-    indent-buffer - Indents the whole buffer
-    cleanup-buffer - Performs
-    #+begin_src emacs-lisp
+   Always use spaces instead of tabs, and define helper functions
+   untabify-buffer - Removes all the tabs from the buffer.
+   indent-buffer - Indents the whole buffer
+   cleanup-buffer - Performs
+   #+begin_src emacs-lisp
       (setq-default indent-tabs-mode nil)
 
       (defun untabify-buffer ()
@@ -148,13 +148,13 @@
         (delete-trailing-whitespace))
 
       (global-set-key (kbd "C-c n") 'cleanup-buffer)
-    #+end_src
+   #+end_src
 ** Example
-    :PROPERTIES:
-    :CUSTOM_ID:
-    :END:
+   :PROPERTIES:
+   :CUSTOM_ID:
+   :END:
 
-    Insert doc
-    #+begin_src emacs-lisp
+   Insert doc
+   #+begin_src emacs-lisp
       (message "End of config")
-    #+end_src
+   #+end_src

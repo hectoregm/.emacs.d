@@ -16,6 +16,7 @@
      (setq user-full-name "Hector E. Gomez Morales")
      (setq user-mail-address "hectoregm@gmail.com")
    #+end_src
+
 ** Environment
    :PROPERTIES:
    :CUSTOM_ID: environment
@@ -149,6 +150,15 @@
 
       (global-set-key (kbd "C-c n") 'cleanup-buffer)
    #+end_src
+** Annoying Emacs defaults
+   :PROPERTIES:
+   :CUSTOM_ID:
+   :END:
+
+   Remove creation of backup files, top annoying feature in emacs.
+   #+begin_src emacs-lisp
+      (setq make-backup-files nil)
+   #+end_src
 ** Example
    :PROPERTIES:
    :CUSTOM_ID:
@@ -158,3 +168,11 @@
    #+begin_src emacs-lisp
       (message "End of config")
    #+end_src
+
+
+
+
+
+
+
+

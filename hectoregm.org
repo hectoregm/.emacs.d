@@ -6,30 +6,69 @@
 
 * Configuration
   My config for Emacs.
-** User details
-   :PROPERTIES:
+** Startup
+   Settings that are better to do early in the startup process.
+*** User details
+    :PROPERTIES:
    :CUSTOM_ID: general-info
    :END:
 
-   Basic info about me
-   #+begin_src emacs-lisp
+    Basic info about me
+    #+begin_src emacs-lisp
      (setq user-full-name "Hector E. Gomez Morales")
      (setq user-mail-address "hectoregm@gmail.com")
-   #+end_src
+    #+end_src
+*** Environment
+    :PROPERTIES:
+    :CUSTOM_ID: environment
+    :END:
 
-** Environment
-   :PROPERTIES:
-   :CUSTOM_ID: environment
-   :END:
-
-   Set the correct PATH
-   #+begin_src emacs-lisp
+    Set the correct PATH, adding /usr/local/bin for homebrew.
+    #+begin_src emacs-lisp
      (setenv "PATH" (concat "/usr/local/bin:/usr/bin:/bin" (getenv "PATH")))
+    #+end_src
+*** Common Lisp for Emacs
+    :PROPERTIES:
+    :CUSTOM_ID: common-lisp
+    :END:
+
+    Emacs lisp is really only a subset of common lisp, and I need to have some
+    of the additional functionality to make the configuration and its dependencies
+    work properly, which we get by requiring Common Lisp for Emacs.
+    #+begin_src emacs-lisp
      (require 'cl)
-   #+end_src
-** Package Management
+    #+end_src
+*** Key bindings
+    :PROPERTIES:
+    :CUSTOM_ID: keybindings
+    :END:
+
+    Sane keybindings for Mac.
+    #+begin_src emacs-lisp
+      (setq mac-option-modifier 'super)
+      (setq mac-command-modifier 'meta)
+    #+end_src
+*** Yes and No
+    :PROPERTIES:
+    :CUSTOM_ID: yes-and-no
+    :END:
+
+    Nobody likes to have to type out the full yes or no when Emacs asks. Which it does often. Make it one character.
+    #+begin_src emacs-lisp
+      (defalias 'yes-or-no-p 'y-or-n-p)
+    #+end_src
+*** Backup
+    :PROPERTIES:
+    :CUSTOM_ID: backup
+    :END:
+
+    Remove creation of backup files, top annoying feature in emacs.
+    #+begin_src emacs-lisp
+      (setq make-backup-files nil)
+    #+end_src
+** Packages
    :PROPERTIES:
-   :CUSTOM_ID: package-management
+   :CUSTOM_ID: packages
    :END:
 
    Using only [[http://melpa.milkbox.net/#][MELPA]] repositories.
@@ -71,28 +110,40 @@
           (when (not (package-installed-p pkg))
             (package-install pkg))))
     #+end_src
-** Default Font and Theme
+** Visual tweaks
+*** Emacs window
+   :PROPERTIES:
+   :CUSTOM_ID: emacs-window
+   :END:
+
+   #+begin_src emacs-lisp
+      (tool-bar-mode -1)
+      (scroll-bar-mode -1)
+
+      (setq visible-bell t
+            inhibit-splash-screen t
+            inhibit-startup-message t
+            initial-scratch-message nil)
+   #+end_src
+*** Default Font
    :PROPERTIES:
    :CUSTOM_ID: default-font
    :END:
 
-   Set default font as DejaVu Sans Mono and default theme one of my own
-   brewing.
+   Set default font as DejaVu Sans Mono, size 18 pts.
    #+begin_src emacs-lisp
       (set-default-font "DejaVu Sans Mono 18")
+   #+end_src
+*** Default Theme
+   :PROPERTIES:
+   :CUSTOM_ID: default-theme
+   :END:
+
+   Default theme is off my own design based in the Railscasts theme.
+   #+begin_src emacs-lisp
       (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
       (setq custom-safe-themes t)
       (load-theme 'hectoregm)
-   #+end_src
-** Key bindings
-   :PROPERTIES:
-   :CUSTOM_ID: key-bindings
-   :END:
-
-   Sane keybindings for Mac
-   #+begin_src emacs-lisp
-      (setq mac-option-modifier 'super)
-      (setq mac-command-modifier 'meta)
    #+end_src
 ** Projectile
    :PROPERTIES:
@@ -150,15 +201,6 @@
 
       (global-set-key (kbd "C-c n") 'cleanup-buffer)
    #+end_src
-** Annoying Emacs defaults
-   :PROPERTIES:
-   :CUSTOM_ID:
-   :END:
-
-   Remove creation of backup files, top annoying feature in emacs.
-   #+begin_src emacs-lisp
-      (setq make-backup-files nil)
-   #+end_src
 ** Example
    :PROPERTIES:
    :CUSTOM_ID:
@@ -168,11 +210,3 @@
    #+begin_src emacs-lisp
       (message "End of config")
    #+end_src
-
-
-
-
-
-
-
-

@@ -145,34 +145,7 @@
       (setq custom-safe-themes t)
       (load-theme 'hectoregm)
    #+end_src
-** Projectile
-   :PROPERTIES:
-   :CUSTOM_ID: python
-   :END:
-
-   Python config
-   #+begin_src emacs-lisp
-      (require 'python-mode)
-   #+end_src
-** Python
-   :PROPERTIES:
-   :CUSTOM_ID: python
-   :END:
-
-   Enable Projectile global mode
-   #+begin_src emacs-lisp
-      (projectile-global-mode)
-   #+end_src
-** CSS
-   :PROPERTIES:
-   :CUSTOM_ID: css
-   :END:
-
-   Set tab width in CSS to two spaces.
-   #+begin_src emacs-lisp
-      (setq css-indent-offset 2)
-   #+end_src
-** Whitespace
+*** Whitespace
    :PROPERTIES:
    :CUSTOM_ID: whitespace
    :END:
@@ -201,12 +174,54 @@
 
       (global-set-key (kbd "C-c n") 'cleanup-buffer)
    #+end_src
-** Example
+*** Modeline
    :PROPERTIES:
-   :CUSTOM_ID:
+   :CUSTOM_ID: modeline
    :END:
 
-   Insert doc
    #+begin_src emacs-lisp
-      (message "End of config")
+      (line-number-mode 1)
+      (column-number-mode 1)
+   #+end_src
+*** Highlight
+   :PROPERTIES:
+   :CUSTOM_ID: highlight
+   :END:
+
+   #+begin_src emacs-lisp
+      (line-number-mode 1)
+      (defun turn-on-hl-line-mode ()
+        (when (> (display-color-cells) 8)
+          (hl-line-mode t)))
+      (add-hook 'prog-mode-hook 'turn-on-hl-line-mode)
+
+   #+end_src
+** Utility modes
+*** Projectile
+   :PROPERTIES:
+   :CUSTOM_ID: python
+   :END:
+
+   Python config
+   #+begin_src emacs-lisp
+      (require 'python-mode)
+   #+end_src
+** Programming modes
+*** Python
+   :PROPERTIES:
+   :CUSTOM_ID: python
+   :END:
+
+   Enable Projectile global mode
+   #+begin_src emacs-lisp
+      (projectile-global-mode)
+   #+end_src
+*** CSS
+   :PROPERTIES:
+   :CUSTOM_ID: css
+   :END:
+
+   Set tab width in CSS to two spaces.
+   #+begin_src emacs-lisp
+      (setq css-indent-offset 2)
    #+end_src

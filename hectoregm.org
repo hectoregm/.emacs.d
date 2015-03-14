@@ -85,6 +85,7 @@
     This is the list of packages used in this configuration.
     #+begin_src emacs-lisp
       (defvar hectoregm/packages '(python-mode
+                                   haskell-mode
                                    magit
                                    projectile)
         "Default packages")
@@ -202,9 +203,9 @@
    :CUSTOM_ID: python
    :END:
 
-   Python config
+   Enable Projectile global mode
    #+begin_src emacs-lisp
-      (require 'python-mode)
+      (projectile-global-mode)
    #+end_src
 ** Programming modes
 *** Python
@@ -212,9 +213,19 @@
    :CUSTOM_ID: python
    :END:
 
-   Enable Projectile global mode
+   Python configuration
    #+begin_src emacs-lisp
-      (projectile-global-mode)
+      (require 'python-mode)
+   #+end_src
+*** Haskell
+   :PROPERTIES:
+   :CUSTOM_ID: haskell
+   :END:
+
+   Haskell configuration
+   #+begin_src emacs-lisp
+      (add-hook 'haskell-mode-hook 'haskell-indent-mode)
+      (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
    #+end_src
 *** CSS
    :PROPERTIES:

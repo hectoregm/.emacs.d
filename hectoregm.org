@@ -86,6 +86,7 @@
     #+begin_src emacs-lisp
       (defvar hectoregm/packages '(python-mode
                                    haskell-mode
+                                   racket-mode
                                    magit
                                    projectile)
         "Default packages")
@@ -207,6 +208,34 @@
    #+begin_src emacs-lisp
       (projectile-global-mode)
    #+end_src
+** Non Programming modes
+*** Latex
+   :PROPERTIES:
+   :CUSTOM_ID: latex
+   :END:
+
+    Latex configuration
+   #+begin_src emacs-lisp
+      (require 'tex-mode)
+
+      (defvar texlive-bin
+        "/usr/local/texlive/2014/bin/x86_64-darwin"
+        "The location of the TeXlive distribution binaries.")
+
+      (setq latex-run-command (expand-file-name "pdflatex" texlive-bin)
+            tex-bibtex-command (expand-file-name "bibtex" texlive-bin))
+   #+end_src
+*** Org mode
+   :PROPERTIES:
+   :CUSTOM_ID: org-mode
+   :END:
+
+    Org mode configuration
+   #+begin_src emacs-lisp
+      (global-set-key (kbd "C-c c")
+                      (lambda ()
+                        (interactive) (find-file "~/.emacs.d/hectoregm.org")))
+   #+end_src
 ** Programming modes
 *** Python
    :PROPERTIES:
@@ -216,6 +245,15 @@
    Python configuration
    #+begin_src emacs-lisp
       (require 'python-mode)
+   #+end_src
+*** Racket
+   :PROPERTIES:
+   :CUSTOM_ID: racket
+   :END:
+
+   Racket configuration
+   #+begin_src emacs-lisp
+      (setq racket-racket-program "/Applications/Racket v6.1.1/bin/racket")
    #+end_src
 *** Haskell
    :PROPERTIES:

@@ -103,7 +103,14 @@
                                    haskell-mode
                                    racket-mode
                                    magit
-                                   projectile)
+                                   ruby-electric
+                                   dash-at-point
+                                   projectile
+                                   projectile-rails
+                                   rvm
+                                   rhtml-mode
+                                   slim-mode
+                                   yaml-mode)
         "Default packages")
     #+end_src
 *** Install default packages
@@ -234,12 +241,16 @@
       (require 'tex-mode)
 
       (defvar texlive-bin
-        "/usr/local/texlive/2014/bin/x86_64-darwin"
+        "/usr/local/texlive/2015/bin/x86_64-darwin"
         "The location of the TeXlive distribution binaries.")
 
       (setq latex-run-command (expand-file-name "pdflatex" texlive-bin)
             tex-bibtex-command (expand-file-name "bibtex" texlive-bin))
    #+end_src
+
+   #+RESULTS:
+   : /usr/local/texlive/2014/bin/x86_64-darwin/bibtex
+
 *** Org mode
    :PROPERTIES:
    :CUSTOM_ID: org-mode
@@ -252,6 +263,18 @@
                         (interactive) (find-file "~/.emacs.d/hectoregm.org")))
    #+end_src
 ** Programming modes
+*** Dash
+   :PROPERTIES:
+   :CUSTOM_ID: dash
+   :END:
+
+   Dash integration
+   #+begin_src emacs-lisp
+      (autoload 'dash-at-point "dash-at-point"
+          "Search the word at point with Dash." t nil)
+      (global-set-key (kbd "C-c d") 'dash-at-point)
+      (global-set-key (kbd "C-c e") 'dash-at-point-with-docset)
+   #+end_src
 *** Javascript
    :PROPERTIES:
    :CUSTOM_ID: javascript
@@ -269,6 +292,25 @@
    Python configuration
    #+begin_src emacs-lisp
       (require 'python-mode)
+   #+end_src
+
+*** Python
+   :PROPERTIES:
+   :CUSTOM_ID: ruby
+   :END:
+
+   Ruby configuration
+   #+begin_src emacs-lisp
+      (add-hook 'ruby-mode-hook 'ruby-electric-mode)
+   #+end_src
+*** Rails
+   :PROPERTIES:
+   :CUSTOM_ID: rails
+   :END:
+
+   Rails configuration
+   #+begin_src emacs-lisp
+      (add-hook 'projectile-mode-hook 'projectile-rails-on)
    #+end_src
 *** Racket
    :PROPERTIES:
@@ -298,3 +340,4 @@
    #+begin_src emacs-lisp
       (setq css-indent-offset 2)
    #+end_src
+

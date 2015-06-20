@@ -18,15 +18,6 @@
      (setq user-full-name "Hector E. Gomez Morales")
      (setq user-mail-address "hectoregm@gmail.com")
     #+end_src
-*** Environment
-    :PROPERTIES:
-    :CUSTOM_ID: environment
-    :END:
-
-    Set the correct PATH, adding /usr/local/bin for homebrew.
-    #+begin_src emacs-lisp
-     (setenv "PATH" (concat "/usr/local/bin:/usr/bin:/bin" (getenv "PATH")))
-    #+end_src
 *** Common Lisp for Emacs
     :PROPERTIES:
     :CUSTOM_ID: common-lisp
@@ -99,7 +90,8 @@
 
     This is the list of packages used in this configuration.
     #+begin_src emacs-lisp
-      (defvar hectoregm/packages '(python-mode
+      (defvar hectoregm/packages '(exec-path-from-shell
+                                   python-mode
                                    haskell-mode
                                    racket-mode
                                    magit
@@ -133,6 +125,16 @@
         (dolist (pkg hectoregm/packages)
           (when (not (package-installed-p pkg))
             (package-install pkg))))
+    #+end_src
+*** Environment
+    :PROPERTIES:
+    :CUSTOM_ID: environment
+    :END:
+
+    Set correct PATH.
+    #+begin_src emacs-lisp
+       (when (memq window-system '(mac ns))
+         (exec-path-from-shell-initialize))
     #+end_src
 ** Visual tweaks
 *** Emacs window

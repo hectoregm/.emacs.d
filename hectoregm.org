@@ -29,6 +29,16 @@
     #+begin_src emacs-lisp
      (require 'cl)
     #+end_src
+*** Server
+    :PROPERTIES:
+    :CUSTOM_ID: server
+    :END:
+
+    Start emacs server to be use with emacsclient, and services like guard.
+    #+begin_src emacs-lisp
+     (require 'server)
+     (server-start)
+    #+end_src
 *** Key bindings
     :PROPERTIES:
     :CUSTOM_ID: keybindings
@@ -102,6 +112,7 @@
                                    rvm
                                    rhtml-mode
                                    slim-mode
+                                   sass-mode
                                    yaml-mode)
         "Default packages")
     #+end_src
@@ -341,5 +352,14 @@
    Set tab width in CSS to two spaces.
    #+begin_src emacs-lisp
       (setq css-indent-offset 2)
+   #+end_src
+*** CSS
+   :PROPERTIES:
+   :CUSTOM_ID: sass
+   :END:
+
+   Enable sass-mode in .scss files
+   #+begin_src emacs-lisp
+      (add-to-list 'auto-mode-alist '("\\.scss\\'" . sass-mode))
    #+end_src
 

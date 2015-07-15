@@ -113,7 +113,8 @@
                                    rhtml-mode
                                    slim-mode
                                    sass-mode
-                                   yaml-mode)
+                                   yaml-mode
+                                   flycheck)
         "Default packages")
     #+end_src
 *** Install default packages
@@ -276,6 +277,15 @@
                         (interactive) (find-file "~/.emacs.d/hectoregm.org")))
    #+end_src
 ** Programming modes
+*** Dash
+   :PROPERTIES:
+   :CUSTOM_ID: flycheck
+   :END:
+
+    Flycheck
+   #+begin_src emacs-lisp
+      (add-hook 'after-init-hook #'global-flycheck-mode)
+   #+end_src
 *** Dash
    :PROPERTIES:
    :CUSTOM_ID: dash

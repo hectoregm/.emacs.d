@@ -44,8 +44,10 @@
     :CUSTOM_ID: keybindings
     :END:
 
-    Sane keybindings for Mac.
+    Sane keybindings for Mac. Unset mouse-3 for use with flyspell.
     #+begin_src emacs-lisp
+      (global-unset-key (kbd "<down-mouse-3>"))
+      (global-unset-key (kbd "<mouse-3>"))
       (setq mac-option-modifier 'super)
       (setq mac-command-modifier 'meta)
     #+end_src
@@ -237,12 +239,33 @@
 ** Utility modes
 *** Projectile
    :PROPERTIES:
-   :CUSTOM_ID: python
+   :CUSTOM_ID: projectile
    :END:
 
    Enable Projectile global mode
    #+begin_src emacs-lisp
       (projectile-global-mode)
+   #+end_src
+*** Flyspell
+   :PROPERTIES:
+   :CUSTOM_ID: flyspell
+   :END:
+
+   Set flyspell custom keybind
+   #+begin_src emacs-lisp
+      (defun fs-switch-dictionary ()
+        (interactive)
+        (let* ((dic ispell-current-dictionary)
+               (change (if (string= dic "en") "es" "en")))
+          (ispell-change-dictionary change)
+          (message "Dictionary switched from %s to %s" dic change)))
+      (global-set-key (kbd "C-c S")
+        (lambda()(interactive)
+          (fs-switch-dictionary)
+          (flyspell-buffer)))
+      (eval-after-load "flyspell" '(progn
+        (define-key flyspell-mouse-map (kbd "<down-mouse-3>") #'flyspell-correct-word)
+        (define-key flyspell-mouse-map (kbd "<mouse-3>") 'undefined) ))
    #+end_src
 ** Non Programming modes
 *** Latex
@@ -260,6 +283,9 @@
 
       (setq latex-run-command (expand-file-name "pdflatex" texlive-bin)
             tex-bibtex-command (expand-file-name "bibtex" texlive-bin))
+      (add-hook 'tex-mode-hook (lambda ()
+        (flyspell-mode)
+        (ispell-change-dictionary "en")))
    #+end_src
 
    #+RESULTS:
@@ -277,7 +303,7 @@
                         (interactive) (find-file "~/.emacs.d/hectoregm.org")))
    #+end_src
 ** Programming modes
-*** Dash
+*** Flycheck
    :PROPERTIES:
    :CUSTOM_ID: flycheck
    :END:
@@ -317,7 +343,7 @@
       (require 'python-mode)
    #+end_src
 
-*** Python
+*** Ruby
    :PROPERTIES:
    :CUSTOM_ID: ruby
    :END:
@@ -363,7 +389,7 @@
    #+begin_src emacs-lisp
       (setq css-indent-offset 2)
    #+end_src
-*** CSS
+*** SASS
    :PROPERTIES:
    :CUSTOM_ID: sass
    :END:

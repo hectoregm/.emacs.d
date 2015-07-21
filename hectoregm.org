@@ -15,6 +15,7 @@
 
     Basic info about me
     #+begin_src emacs-lisp
+     (setq debug-on-error t)
      (setq user-full-name "Hector E. Gomez Morales")
      (setq user-mail-address "hectoregm@gmail.com")
     #+end_src
@@ -116,7 +117,10 @@
                                    slim-mode
                                    sass-mode
                                    yaml-mode
-                                   flycheck)
+                                   flycheck
+                                   elixir-mode
+                                   alchemist
+                                   robe)
         "Default packages")
     #+end_src
 *** Install default packages
@@ -350,7 +354,14 @@
 
    Ruby configuration
    #+begin_src emacs-lisp
-      (add-hook 'ruby-mode-hook 'ruby-electric-mode)
+      (eval-after-load 'company
+        '(push 'company-robe company-backends))
+      (add-hook 'ruby-mode-hook (lambda ()
+        (ruby-electric-mode)
+        (rvm-activate-corresponding-ruby)
+        (robe-mode)
+        (robe-start)
+        (company-mode)))
    #+end_src
 *** Rails
    :PROPERTIES:
@@ -380,6 +391,17 @@
       (add-hook 'haskell-mode-hook 'haskell-indent-mode)
       (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
    #+end_src
+*** Elixir
+   :PROPERTIES:
+   :CUSTOM_ID: elixir
+   :END:
+
+   Elixir configuration
+   #+begin_src emacs-lisp
+      (add-hook 'elixir-mode-hook (lambda ()
+        (alchemist-mode)
+        (company-mode)))
+   #+end_src
 *** CSS
    :PROPERTIES:
    :CUSTOM_ID: css
@@ -398,4 +420,3 @@
    #+begin_src emacs-lisp
       (add-to-list 'auto-mode-alist '("\\.scss\\'" . sass-mode))
    #+end_src
-

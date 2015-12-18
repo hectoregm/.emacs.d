@@ -6,6 +6,6 @@ backups
 elpa
 places
 hectoregm.el
-
+*.rb
 # Projectile files
 projectile-bookmarks.eld
